@@ -1,0 +1,372 @@
+/* 全局样式 */
+.auto-complete-suggestions {
+  background-color: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 8px;
+  width: 320px;
+  max-height: 320px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  font-family: var(--font-interface);
+  font-size: 14px;
+  position: absolute;
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 深色模式样式 */
+body.theme-dark .auto-complete-suggestions {
+  background-color: var(--background-primary);
+  border-color: var(--background-modifier-border);
+}
+
+/* 浅色模式样式 */
+body.theme-light .auto-complete-suggestions {
+  background-color: var(--background-primary);
+  border-color: var(--background-modifier-border);
+}
+
+/* 建议类别 */
+.suggestion-category {
+  margin-bottom: 10px;
+}
+
+.category-header {
+  color: var(--text-accent);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  padding: 0 4px;
+  letter-spacing: 0.5px;
+}
+
+.category-items {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 建议项 */
+.suggestion-item {
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.1s ease;
+  margin: 2px 0;
+  color: var(--text-normal);
+}
+
+.suggestion-item .icon {
+  margin-right: 10px;
+  width: 18px;
+  text-align: center;
+  color: var(--text-accent);
+  font-size: 16px;
+}
+
+/* 选中状态 */
+.suggestion-item.selected {
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+.suggestion-item.selected .icon {
+  color: var(--text-on-accent);
+}
+
+/* 悬停状态 */
+.suggestion-item:hover:not(.selected) {
+  background-color: var(--background-modifier-hover);
+}
+
+/* 分隔线 */
+.suggestion-divider {
+  height: 1px;
+  background-color: var(--background-modifier-border);
+  margin: 6px 0;
+}
+
+/* 平滑滚动 */
+.auto-complete-suggestions {
+  scrollbar-width: thin;
+  scrollbar-color: var(--background-modifier-border) transparent;
+}
+
+.auto-complete-suggestions::-webkit-scrollbar {
+  width: 6px;
+}
+
+.auto-complete-suggestions::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.auto-complete-suggestions::-webkit-scrollbar-thumb {
+  background-color: var(--background-modifier-border);
+  border-radius: 3px;
+}
+
+.auto-complete-suggestions::-webkit-scrollbar-thumb:hover {
+  background-color: var(--interactive-accent);
+}
+
+/* 空结果状态 */
+.no-suggestions {
+  padding: 10px;
+  color: var(--text-muted);
+  text-align: center;
+  font-style: italic;
+}
+
+/* 键盘快捷键提示 */
+.keyboard-hint {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--background-modifier-border);
+  margin-top: 6px;
+}
+
+.keyboard-hint kbd {
+  background-color: var(--background-secondary);
+  border-radius: 3px;
+  padding: 1px 4px;
+  margin: 0 2px;
+  font-family: var(--font-monospace);
+  font-size: 10px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+/* Tag Selection Modal Styles */
+.tag-controls {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tags-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.tag-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  background: var(--background-secondary);
+}
+
+.tag-checkbox {
+  margin-right: 0.75rem;
+}
+
+.tag-label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tag-name {
+  font-weight: 500;
+  color: var(--text-normal);
+}
+
+.confidence-bar {
+  width: 100px;
+  height: 4px;
+  background: var(--background-modifier-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: var(--interactive-accent);
+  transition: width 0.3s ease;
+}
+
+.confidence-text {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  margin-left: 0.5rem;
+}
+
+.tag-category {
+  font-size: 0.7em;
+  color: var(--text-accent);
+  background: var(--background-modifier-border);
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+}
+
+.tag-description {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.modal-button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+/* Status bar styles */
+.linktag-status {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.linktag-status.processing {
+  color: var(--text-accent);
+}
+
+.linktag-status.error {
+  color: var(--text-error);
+}
+
+.linktag-status.ready {
+  color: var(--text-muted);
+}
+
+/* Batch Process Modal Styles */
+.file-selection {
+  margin-bottom: 20px;
+}
+
+.filter-options {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: var(--background-secondary);
+  border-radius: 5px;
+}
+
+.file-list-container {
+  margin: 20px 0;
+}
+
+.file-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  border-bottom: 1px solid var(--background-modifier-border-hover);
+}
+
+.file-item:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.file-item:last-child {
+  border-bottom: none;
+}
+
+.file-path {
+  color: var(--text-normal);
+  font-family: var(--font-monospace);
+  font-size: 0.9em;
+}
+
+.process-options {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 5px;
+}
+
+/* Status Bar Styles */
+.linktag-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.linktag-status:hover {
+  background-color: var(--background-modifier-hover);
+}
+
+.status-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.status-text {
+  font-size: 0.85em;
+}
+
+/* Command Palette Icons */
+.linktag-icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+/* Loading States */
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--background-modifier-border);
+  border-radius: 50%;
+  border-top-color: var(--text-accent);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error States */
+.error-message {
+  color: var(--text-error);
+  background-color: var(--background-modifier-error);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+/* Success States */
+.success-message {
+  color: var(--text-success);
+  background-color: var(--background-modifier-success);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+}  

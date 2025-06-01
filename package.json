@@ -1,0 +1,41 @@
+{
+  "name": "obsidian-linktag-autofill",
+  "version": "1.0.0",
+  "description": "Automatically generate tags for Obsidian notes using AI",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+    "version": "node version-bump.mjs && git add manifest.json versions.json",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "obsidian",
+    "plugin",
+    "tags",
+    "ai",
+    "links",
+    "autofill",
+    "copilot",
+    "ollama",
+    "gpt",
+    "automation",
+    "AI"
+  ],
+  "author": "LT",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "@typescript-eslint/eslint-plugin": "5.29.0",
+    "@typescript-eslint/parser": "5.29.0",
+    "builtin-modules": "3.3.0",
+    "esbuild": "0.17.3",
+    "obsidian": "latest",
+    "rimraf": "^3.0.2",
+    "tslib": "2.4.0",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "tslib": "^2.4.0"
+  }
+}
