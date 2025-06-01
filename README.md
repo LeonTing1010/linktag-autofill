@@ -1,24 +1,24 @@
 # LinkTagAutoFill for Obsidian
 
-An intelligent Obsidian plugin that automatically generates relevant tags for your notes using AI language models. LinkTagAutoFill brings a new level of automation and insight to your note organization workflow.
+LinkTagAutoFill is an intelligent Obsidian plugin that automatically generates relevant tags for your notes using advanced AI language models. It brings a new level of automation and insight to your note organization workflow.
 
 ---
 
 ## 🚀 Features
 
 ### 🤖 AI-Powered Tag Generation
-- **Multiple AI Providers**: Supports OpenAI, Claude (Anthropic), and local models via Ollama, giving you flexibility to choose the best provider for your needs.
-- **Smart Content Analysis**: Uses advanced language models to analyze your notes, extract keywords, and generate highly relevant tags.
-- **Customizable Settings**: Adjust confidence thresholds, set maximum tags per note, and control hierarchical tag depth for tailored results.
+- **Multiple AI Providers**: Supports OpenAI, Claude (Anthropic), and local models via Ollama, giving you the flexibility to choose the best provider for your needs.
+- **Smart Content Analysis**: Leverages state-of-the-art language models to analyze your notes, extract keywords, and generate highly relevant tags.
+- **Customizable Settings**: Fine-tune confidence thresholds, set the maximum number of tags per note, and control hierarchical tag depth for tailored results.
 
 ### 🎯 Smart Tag Management
 - **Visual Tag Selection**: Interactive UI for reviewing, selecting, and applying suggested tags, complete with confidence scores.
 - **Hierarchical Tagging**: Generate nested tag structures for better organization.
-- **Conflict Detection & Merging**: Identifies overlapping or conflicting tags and offers to merge or resolve them.
+- **Conflict Detection & Merging**: Detects overlapping or conflicting tags and offers options to merge or resolve them.
 - **Historical Analytics**: Track tag performance and view analytics on tag usage over time.
 
 ### ⚡ Flexible Integration
-- **Manual & Auto Modes**: Generate tags on-demand or enable automatic tagging on note creation/edit.
+- **Manual & Auto Modes**: Generate tags on demand or enable automatic tagging on note creation or edit.
 - **Batch Processing**: Quickly process and tag multiple notes at once.
 - **Context Menu & Command Palette**: Access all plugin features from Obsidian's UI for maximum convenience.
 
@@ -39,7 +39,7 @@ An intelligent Obsidian plugin that automatically generates relevant tags for yo
 
 ### Manual Installation
 1. Download the latest release from GitHub.
-2. Extract files to your vault's `.obsidian/plugins/linktag-autofill/` directory.
+2. Extract the files to your vault's `.obsidian/plugins/linktag-autofill/` directory.
 3. Enable the plugin in Obsidian settings.
 
 ---
@@ -62,7 +62,7 @@ An intelligent Obsidian plugin that automatically generates relevant tags for yo
 2. Choose a local AI model.
 3. Configure your local API endpoint in the plugin settings.
 
-> **Tip:** You can set different models and endpoints per note using frontmatter, This allows for maximum flexibility and privacy.
+> **Tip:** You can set different models and endpoints per note using frontmatter. This allows for maximum flexibility and privacy.
 
 ---
 
