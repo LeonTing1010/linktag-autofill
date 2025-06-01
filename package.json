@@ -1,7 +1,7 @@
 {
-  "name": "obsidian-linktag-autofill",
+  "name": "linktag-autofill",
   "version": "1.0.0",
-  "description": "Automatically generate tags for Obsidian notes using AI",
+  "description": "n intelligent plugin that automatically generates relevant tags for your notes using AI language models. LinkTagAutoFill brings a new level of automation and insight to your note organization workflow.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",

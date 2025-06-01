@@ -116,8 +116,8 @@ An intelligent Obsidian plugin that automatically generates relevant tags for yo
 
 ## 🧑‍💻 Support & Documentation
 
-- [GitHub Issues](https://github.com/LeonTing1010/obsidian-linktag-autofill/issues)
-- [Documentation](https://github.com/LeonTing1010/obsidian-linktag-autofill)
+- [GitHub Issues](https://github.com/LeonTing1010/linktag-autofill/issues)
+- [Documentation](https://github.com/LeonTing1010/linktag-autofill)
 
 ---
 
