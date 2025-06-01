@@ -2,8 +2,6 @@
 
 LinkTagAutoFill is an intelligent Obsidian plugin that automatically generates relevant tags for your notes using advanced AI language models. It brings a new level of automation and insight to your note organization workflow.
 
-[☕ Buy me a coffee](https://ko-fi.com/lt1010)
-
 ---
 
 ## 🚀 Features
@@ -137,6 +135,8 @@ LinkTagAutoFill is an intelligent Obsidian plugin that automatically generates r
 ## 🤝 Contributions Welcome
 
 Pull requests, feature ideas, and bug reports are highly encouraged. Help us make LinkTagAutoFill the best tagging assistant for the Obsidian community!
+
+If you find this project helpful, consider supporting it: [☕ Buy me a coffee](https://ko-fi.com/lt1010)
 
 ---
 
