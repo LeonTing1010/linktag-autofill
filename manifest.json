@@ -5,7 +5,7 @@
   "minAppVersion": "0.15.0",
   "description": "an intelligent plugin that automatically generates relevant tags for your notes using AI language models. LinkTagAutoFill brings a new level of automation and insight to your note organization workflow.",
   "author": "LT",
-  "authorUrl": "https://github.com/LeonTing1010/linktag-autofill",
+  "authorUrl": "https://github.com/LeonTing1010",
   "fundingUrl": "https://github.com/LeonTing1010/linktag-autofill",
   "isDesktopOnly": false
 }
