@@ -62,7 +62,7 @@ An intelligent Obsidian plugin that automatically generates relevant tags for yo
 2. Choose a local AI model.
 3. Configure your local API endpoint in the plugin settings.
 
-> **Tip:** You can set different models and endpoints per note using frontmatter, just like advanced users do in ChatGPT MD. This allows for maximum flexibility and privacy.
+> **Tip:** You can set different models and endpoints per note using frontmatter, This allows for maximum flexibility and privacy.
 
 ---
 
@@ -116,8 +116,8 @@ An intelligent Obsidian plugin that automatically generates relevant tags for yo
 
 ## 🧑‍💻 Support & Documentation
 
-- [GitHub Issues](https://github.com/yourusername/obsidian-linktag-autofill/issues)
-- [Documentation](https://yourusername.github.io/obsidian-linktag-autofill)
+- [GitHub Issues](https://github.com/LeonTing1010/obsidian-linktag-autofill/issues)
+- [Documentation](https://github.com/LeonTing1010/obsidian-linktag-autofill)
 
 ---
 
