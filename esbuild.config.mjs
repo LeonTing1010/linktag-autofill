@@ -48,7 +48,16 @@ const context = await esbuild.context({
 
 if (prod) {
 	await context.rebuild();
-	
+
+	// Ensure dist is clean before copying and zipping
+	const fs = await import('fs');
+	const distFiles = ['dist/manifest.json', 'dist/main.js', 'dist/styles.css', 'dist/versions.json', 'dist/linktag-autofill.zip'];
+	distFiles.forEach(f => {
+		if (fs.existsSync(f)) {
+			fs.unlinkSync(f);
+		}
+	});
+
 	// Copy required files to dist
 	const filesToCopy = [
 		{ src: "manifest.json", dest: "dist/manifest.json" },
@@ -64,8 +73,27 @@ if (prod) {
 			console.warn(`Warning: ${src} not found`);
 		}
 	});
-	
-	process.exit(0);
+
+	// ---- Add zip packaging below ----
+	const archiver = (await import('archiver')).default;
+	const output = fs.createWriteStream('dist/linktag-autofill.zip');
+	const archive = archiver('zip', { zlib: { level: 9 } });
+
+	output.on('close', () => {
+		console.log(`Created dist/linktag-autofill.zip (${archive.pointer()} total bytes)`);
+		process.exit(0);
+	});
+	archive.on('error', err => { throw err; });
+
+	archive.pipe(output);
+	archive.file('dist/manifest.json', { name: 'manifest.json' });
+	archive.file('dist/main.js', { name: 'main.js' });
+	if (fs.existsSync('dist/styles.css')) {
+		archive.file('dist/styles.css', { name: 'styles.css' });
+	}
+	archive.finalize();
+	// ---- End zip packaging ----
+
 } else {
 	await context.watch();
 }
