@@ -61,7 +61,7 @@ export class SettingTab extends PluginSettingTab {
         .addOption('ollama', 'Ollama')
         .setValue(this.plugin.settings.activeProvider)
         .onChange(async (value) => {
-          this.plugin.settings.activeProvider = value as any;
+          this.plugin.settings.activeProvider = value as 'openai' | 'claude' | 'ollama';
           await this.plugin.saveSettings();
         }));
 
@@ -99,7 +99,7 @@ export class SettingTab extends PluginSettingTab {
         .addOption('both', 'Both Hashtags and YAML')
         .setValue(this.plugin.settings.tagFormat)
         .onChange(async (value) => {
-          this.plugin.settings.tagFormat = value as any;
+          this.plugin.settings.tagFormat = value as 'hashtag' | 'yaml' | 'inline' | 'both';
           await this.plugin.saveSettings();
         }));
 
@@ -112,7 +112,7 @@ export class SettingTab extends PluginSettingTab {
         .addOption('smart', 'Smart - Merge and avoid duplicates')
         .setValue(this.plugin.settings.tagMergeMode || 'smart')
         .onChange(async (value) => {
-          this.plugin.settings.tagMergeMode = value as any;
+          this.plugin.settings.tagMergeMode = value as 'append' | 'replace' | 'smart';
           await this.plugin.saveSettings();
         }));
 
@@ -148,7 +148,8 @@ export class SettingTab extends PluginSettingTab {
             this.plugin.settings.customPrompt = value;
             await this.plugin.saveSettings();
           });
-        
+        // Add custom class for styling
+        textArea.inputEl.classList.add('ltaf-custom-prompt-textarea');
         this.setupTextArea(textArea.inputEl);
         return textArea;
       });
@@ -244,29 +245,18 @@ export class SettingTab extends PluginSettingTab {
     // 为Ollama添加模型推荐说明
     if (this.plugin.settings.activeProvider === 'ollama') {
       const ollamaHint = containerEl.createEl('div', {
-        cls: 'setting-item-description',
+        cls: ['setting-item-description', 'ltaf-ollama-hint'],
         text: '💡 For better Chinese tag generation, consider using: qwen2.5:3b, qwen2.5:7b, or glm4:9b'
       });
-      ollamaHint.style.marginTop = '10px';
-      ollamaHint.style.padding = '10px';
-      ollamaHint.style.backgroundColor = 'var(--background-secondary)';
-      ollamaHint.style.borderRadius = '4px';
-      ollamaHint.style.fontSize = '0.9em';
     }
   }
 
   private setupTextArea(textAreaEl: HTMLTextAreaElement): void {
-    textAreaEl.style.minHeight = '80px';
-    textAreaEl.style.height = 'auto';
-    textAreaEl.style.resize = 'vertical';
-    textAreaEl.style.whiteSpace = 'pre-wrap';
-    textAreaEl.style.wordWrap = 'break-word';
-    
+    // Only handle dynamic resizing, not static styles
     const autoResize = () => {
       textAreaEl.style.height = 'auto';
       textAreaEl.style.height = Math.max(80, textAreaEl.scrollHeight) + 'px';
     };
-    
     setTimeout(autoResize, 0);
     textAreaEl.addEventListener('input', autoResize);
     textAreaEl.addEventListener('paste', () => setTimeout(autoResize, 0));

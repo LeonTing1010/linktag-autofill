@@ -145,6 +145,7 @@ body.theme-light .auto-complete-suggestions {
   font-size: 10px;
   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
+
 /* Tag Selection Modal Styles */
 .tag-controls {
   margin-bottom: 1rem;
@@ -168,25 +169,39 @@ body.theme-light .auto-complete-suggestions {
   margin: 1rem 0;
 }
 
+.tag-selection-container {
+  margin: 1rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .tag-item {
   display: flex;
   align-items: center;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
+  padding: 8px;
+  margin: 4px 0;
   border: 1px solid var(--background-modifier-border);
   border-radius: 4px;
+  cursor: pointer;
   background: var(--background-secondary);
+  transition: background 0.1s;
+}
+
+.tag-item.selected {
+  background-color: var(--background-modifier-hover);
 }
 
 .tag-checkbox {
-  margin-right: 0.75rem;
+  margin-right: 8px;
 }
 
 .tag-label {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .tag-name {
@@ -209,18 +224,18 @@ body.theme-light .auto-complete-suggestions {
 }
 
 .confidence-text {
-  font-size: 0.8em;
+  margin-left: 8px;
   color: var(--text-muted);
-  margin-left: 0.5rem;
+  font-size: 0.95em;
 }
 
 .tag-category {
-  font-size: 0.7em;
-  color: var(--text-accent);
+  margin-left: 8px;
+  font-size: 0.8em;
   background: var(--background-modifier-border);
-  padding: 0.1rem 0.3rem;
+  padding: 2px 6px;
   border-radius: 3px;
-  margin-left: 0.5rem;
+  color: var(--text-accent);
 }
 
 .tag-description {
@@ -232,9 +247,9 @@ body.theme-light .auto-complete-suggestions {
 .modal-button-container {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding-top: 1rem;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
   border-top: 1px solid var(--background-modifier-border);
 }
 
@@ -369,4 +384,70 @@ body.theme-light .auto-complete-suggestions {
   padding: 10px;
   border-radius: 5px;
   margin: 10px 0;
-}  
+}
+
+/* Tag Analytics Modal Styles */
+.analytics-section {
+  margin-bottom: 2rem;
+}
+
+.tag-list {
+  margin: 0.5rem 0 1rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tag-analytics-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  background: var(--background-secondary);
+}
+
+.tag-name {
+  font-weight: 500;
+  color: var(--text-normal);
+  flex: 1;
+}
+
+.tag-count {
+  color: var(--text-muted);
+  font-size: 0.95em;
+}
+
+.success-rate {
+  font-size: 0.95em;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.high-success {
+  color: var(--text-success);
+}
+.medium-success {
+  color: var(--text-accent);
+}
+.low-success {
+  color: var(--text-error);
+}
+
+/* LinkTagAutoFill Settings UI Enhancements */
+.ltaf-ollama-hint {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--background-secondary);
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.ltaf-custom-prompt-textarea {
+  min-height: 80px;
+  height: auto;
+  resize: vertical;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

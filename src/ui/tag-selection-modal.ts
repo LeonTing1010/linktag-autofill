@@ -32,45 +32,45 @@ export class TagSelectionModal extends Modal {
         
         this.suggestions.forEach((suggestion, index) => {
             const tagItem = tagContainer.createDiv('tag-item');
-            tagItem.style.cssText = `
-                display: flex;
-                align-items: center;
-                padding: 8px;
-                margin: 4px 0;
-                border: 1px solid var(--background-modifier-border);
-                border-radius: 4px;
-                cursor: pointer;
-            `;
 
             // Checkbox
             const checkbox = tagItem.createEl('input', {
                 type: 'checkbox',
-                attr: { id: `tag-${index}` }
+                attr: { id: `tag-${index}` },
+                cls: 'tag-checkbox'
             });
-            checkbox.style.marginRight = '8px';
 
-            // Tag info
-            const tagInfo = tagItem.createDiv();
-            tagInfo.innerHTML = `
-                <strong>${suggestion.tag}</strong>
-                <span style="margin-left: 8px; color: var(--text-muted);">
-                    ${Math.round(suggestion.confidence * 100)}% confidence
-                </span>
-                ${suggestion.category ? `<span style="margin-left: 8px; font-size: 0.8em; background: var(--background-modifier-border); padding: 2px 6px; border-radius: 3px;">${suggestion.category}</span>` : ''}
-            `;
+            // Tag info (use DOM API, not innerHTML)
+            const tagLabel = tagItem.createDiv('tag-label');
+
+            // Tag name
+            const tagName = tagLabel.createSpan({ text: suggestion.tag, cls: 'tag-name' });
+
+            // Confidence
+            const confidence = tagLabel.createSpan({
+                text: `${Math.round(suggestion.confidence * 100)}% confidence`,
+                cls: 'confidence-text'
+            });
+
+            // Category (if present)
+            if (suggestion.category) {
+                tagLabel.createSpan({
+                    text: suggestion.category,
+                    cls: 'tag-category'
+                });
+            }
 
             // Click handler
             tagItem.addEventListener('click', (e) => {
                 if (e.target !== checkbox) {
                     checkbox.checked = !checkbox.checked;
                 }
-                
                 if (checkbox.checked) {
                     this.selectedTags.add(suggestion.tag);
-                    tagItem.style.backgroundColor = 'var(--background-modifier-hover)';
+                    tagItem.addClass('selected');
                 } else {
                     this.selectedTags.delete(suggestion.tag);
-                    tagItem.style.backgroundColor = '';
+                    tagItem.removeClass('selected');
                 }
             });
 
@@ -78,20 +78,12 @@ export class TagSelectionModal extends Modal {
             if (suggestion.confidence >= 0.9) {
                 checkbox.checked = true;
                 this.selectedTags.add(suggestion.tag);
-                tagItem.style.backgroundColor = 'var(--background-modifier-hover)';
+                tagItem.addClass('selected');
             }
         });
 
         // Buttons
-        const buttonContainer = contentEl.createDiv();
-        buttonContainer.style.cssText = `
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--background-modifier-border);
-        `;
+        const buttonContainer = contentEl.createDiv('modal-button-container');
 
         const cancelButton = buttonContainer.createEl('button', { text: 'Cancel' });
         cancelButton.addEventListener('click', () => {

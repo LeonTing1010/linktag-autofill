@@ -68,7 +68,6 @@ if (prod) {
 	filesToCopy.forEach(({ src, dest, optional }) => {
 		if (existsSync(src)) {
 			copyFileSync(src, dest);
-			console.log(`Copied ${src} to ${dest}`);
 		} else if (!optional) {
 			console.warn(`Warning: ${src} not found`);
 		}
@@ -80,7 +79,6 @@ if (prod) {
 	const archive = archiver('zip', { zlib: { level: 9 } });
 
 	output.on('close', () => {
-		console.log(`Created dist/linktag-autofill.zip (${archive.pointer()} total bytes)`);
 		process.exit(0);
 	});
 	archive.on('error', err => { throw err; });

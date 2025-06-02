@@ -57,8 +57,6 @@ export class TagManager {
             // Write back to file
             await this.app.vault.modify(file, updatedContent);
 
-            console.log(`Cleared tags from file: ${file.path}`);
-
         } catch (error) {
             console.error('Error clearing tags:', error);
             throw error;

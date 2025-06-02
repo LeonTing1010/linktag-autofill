@@ -125,13 +125,10 @@ export default class LinkTagAutoFillPlugin extends Plugin {
 
     // Add settings tab
     this.addSettingTab(new SettingTab(this.app, this));
-
-    console.log('LinkTag AutoFill plugin loaded');
   }
 
   onunload() {
     this.statusBar?.destroy();
-    console.log('LinkTag AutoFill plugin unloaded');
   }
 
   async loadSettings() {

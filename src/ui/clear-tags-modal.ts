@@ -37,14 +37,7 @@ export class ClearTagsModal extends Modal {
         }
 
         // Selection controls
-        const controlsContainer = contentEl.createDiv();
-        controlsContainer.style.cssText = `
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--background-modifier-border);
-        `;
+        const controlsContainer = contentEl.createDiv('tag-controls');
 
         const selectAllBtn = controlsContainer.createEl('button', { text: 'Select All' });
         selectAllBtn.addEventListener('click', () => {
@@ -60,26 +53,11 @@ export class ClearTagsModal extends Modal {
 
         // File list container
         const fileListContainer = contentEl.createDiv('file-list-container');
-        fileListContainer.style.cssText = `
-            max-height: 400px;
-            overflow-y: auto;
-            border: 1px solid var(--background-modifier-border);
-            border-radius: 4px;
-            padding: 8px;
-        `;
 
         this.createFileList(fileListContainer, filesWithTags);
 
         // Buttons
-        const buttonContainer = contentEl.createDiv();
-        buttonContainer.style.cssText = `
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--background-modifier-border);
-        `;
+        const buttonContainer = contentEl.createDiv('modal-button-container');
 
         const cancelButton = buttonContainer.createEl('button', { text: 'Cancel' });
         cancelButton.addEventListener('click', () => {
@@ -100,52 +78,44 @@ export class ClearTagsModal extends Modal {
 
         files.forEach(file => {
             const fileItem = container.createDiv('file-item');
-            fileItem.style.cssText = `
-                display: flex;
-                align-items: center;
-                padding: 4px;
-                margin: 2px 0;
-                cursor: pointer;
-                border-radius: 3px;
-            `;
 
             // Checkbox
             const checkbox = fileItem.createEl('input', {
                 type: 'checkbox',
-                attr: { id: `file-${file.path}` }
+                attr: { id: `file-${file.path}` },
+                cls: 'tag-checkbox'
             });
-            checkbox.style.marginRight = '8px';
             checkbox.checked = this.selectedFiles.has(file);
 
-            // File info
-            const fileInfo = fileItem.createDiv();
+            // File info (use DOM API, not innerHTML)
+            const fileInfo = fileItem.createDiv('tag-label');
             const cache = this.app.metadataCache.getFileCache(file);
             const tagCount = cache?.frontmatter?.tags?.length || 0;
-            
-            fileInfo.innerHTML = `
-                <div style="font-weight: 500;">${file.basename}</div>
-                <div style="font-size: 0.8em; color: var(--text-muted);">
-                    ${file.path} • ${tagCount} tags
-                </div>
-            `;
+
+            // File name
+            fileInfo.createSpan({ text: file.basename, cls: 'tag-name' });
+            // Path and tag count
+            const meta = fileInfo.createSpan({
+                text: ` ${file.path} • ${tagCount} tags`,
+                cls: 'confidence-text'
+            });
 
             // Click handler
             fileItem.addEventListener('click', (e) => {
                 if (e.target !== checkbox) {
                     checkbox.checked = !checkbox.checked;
                 }
-                
                 if (checkbox.checked) {
                     this.selectedFiles.add(file);
-                    fileItem.style.backgroundColor = 'var(--background-modifier-hover)';
+                    fileItem.addClass('selected');
                 } else {
                     this.selectedFiles.delete(file);
-                    fileItem.style.backgroundColor = '';
+                    fileItem.removeClass('selected');
                 }
             });
 
             if (this.selectedFiles.has(file)) {
-                fileItem.style.backgroundColor = 'var(--background-modifier-hover)';
+                fileItem.addClass('selected');
             }
         });
     }

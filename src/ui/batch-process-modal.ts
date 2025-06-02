@@ -121,23 +121,27 @@ export class BatchProcessModal extends Modal {
     
     this.allFiles.forEach(file => {
       const fileDiv = fileList.createDiv('file-item');
-      
+
       const checkbox = fileDiv.createEl('input', {
         type: 'checkbox',
         cls: 'file-checkbox'
       });
-      
       checkbox.checked = this.selectedFiles.includes(file);
       checkbox.addEventListener('change', () => {
         if (checkbox.checked) {
           this.selectedFiles.push(file);
+          fileDiv.addClass('selected');
         } else {
           this.selectedFiles = this.selectedFiles.filter(f => f !== file);
+          fileDiv.removeClass('selected');
         }
         this.renderFileList();
       });
 
       fileDiv.createSpan({ text: file.path, cls: 'file-path' });
+      if (this.selectedFiles.includes(file)) {
+        fileDiv.addClass('selected');
+      }
     });
   }
 

@@ -4,7 +4,13 @@ import { Utils } from './utils';
 
 export class ContentProcessor {
   static async extractContent(file: TFile): Promise<string> {
-    const app = (window as any).app as App;
+    // Use a type guard for window.app
+    let app: App;
+    if (typeof window !== 'undefined' && (window as any).app) {
+      app = (window as unknown as { app: App }).app;
+    } else {
+      throw new Error('Obsidian App instance not found');
+    }
     const content = await app.vault.read(file);
     
     // Remove frontmatter
